@@ -1,0 +1,70 @@
+{
+  "schema_version": "0.1",
+  "id": "dialogue-clarification",
+  "title": "Repair a misunderstanding with clarification",
+  "language": "en",
+  "audience": {
+    "level": "intermediate",
+    "description": "Learners who can take part in short workplace conversations and want to repair misunderstandings."
+  },
+  "objectives": [
+    "Notice when a speaker needs clarification.",
+    "Produce a polite clarification request that keeps the conversation moving."
+  ],
+  "context": "A colleague gives an instruction that is difficult to hear in a busy office.",
+  "items": [
+    {
+      "id": "clarification-1",
+      "title": "Ask for a repeat",
+      "input": {
+        "segments": [
+          {
+            "id": "turn-a",
+            "speaker": "A",
+            "text": "Please upload the revised file before lunch.",
+            "audio": "audio/dialogue-repair.wav"
+          },
+          {
+            "id": "turn-b",
+            "speaker": "B",
+            "text": "Sorry, could you say that again?",
+            "audio": "audio/dialogue-repair.wav"
+          }
+        ]
+      },
+      "task": {
+        "prompt": "Reply as speaker B with a polite request for clarification.",
+        "response_dimensions": ["politeness", "repair"],
+        "revision_prompt": "Revise your reply so it acknowledges the problem and asks for the missing information.",
+        "transfer_prompt": "Imagine a noisy train station. Ask another person to repeat a time or platform number."
+      },
+      "feedback": {
+        "dimensions": [
+          {
+            "id": "politeness",
+            "label": "Polite repair opening",
+            "rationale": "A brief apology or softener signals that the request is cooperative.",
+            "required_terms": ["sorry"],
+            "missing_guidance": "Start with a softener such as sorry before asking the speaker to repeat."
+          },
+          {
+            "id": "repair",
+            "label": "Clear clarification request",
+            "rationale": "The listener explicitly asks the speaker to repeat the unclear information.",
+            "required_terms": ["say", "again"],
+            "missing_guidance": "Ask the speaker to say the information again so the conversation can continue."
+          }
+        ]
+      },
+      "provenance": {
+        "source": "Original Boxi English teaching example; audio is generated silence for alignment tests",
+        "license": "CC BY 4.0"
+      }
+    }
+  ],
+  "provenance": {
+    "text": "Original Boxi English teaching examples",
+    "audio": "Generated local fixture audio; no external recording",
+    "license": "CC BY 4.0"
+  }
+}

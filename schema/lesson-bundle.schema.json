@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/boxi-English/english-explain/schema/lesson-bundle.schema.json",
+  "title": "Boxi English lesson bundle",
+  "description": "An offline, inspectable input-to-transfer lesson contract.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "id", "title", "language", "audience", "objectives", "context", "items", "provenance"],
+  "properties": {
+    "schema_version": {"const": "0.1"},
+    "id": {"$ref": "#/$defs/id"},
+    "title": {"type": "string", "minLength": 1},
+    "language": {"const": "en"},
+    "audience": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["level", "description"],
+      "properties": {
+        "level": {"type": "string", "minLength": 1},
+        "description": {"type": "string", "minLength": 1}
+      }
+    },
+    "objectives": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "context": {"type": "string", "minLength": 1},
+    "items": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/item"}},
+    "provenance": {"$ref": "#/$defs/provenance"}
+  },
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]{1,63}$"},
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["text", "audio", "license"],
+      "properties": {
+        "text": {"type": "string", "minLength": 1},
+        "audio": {"type": "string", "minLength": 1},
+        "license": {"type": "string", "minLength": 1}
+      }
+    },
+    "segment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "text"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "speaker": {"type": "string", "minLength": 1},
+        "text": {"type": "string", "minLength": 1},
+        "audio": {"type": "string", "minLength": 1}
+      }
+    },
+    "item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "input", "task", "feedback", "provenance"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "title": {"type": "string", "minLength": 1},
+        "input": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["segments"],
+          "properties": {"segments": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/segment"}}}
+        },
+        "task": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["prompt", "response_dimensions", "revision_prompt", "transfer_prompt"],
+          "properties": {
+            "prompt": {"type": "string", "minLength": 1},
+            "response_dimensions": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/id"}},
+            "revision_prompt": {"type": "string", "minLength": 1},
+            "transfer_prompt": {"type": "string", "minLength": 1}
+          }
+        },
+        "feedback": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["dimensions"],
+          "properties": {
+            "dimensions": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["id", "label", "rationale", "required_terms", "missing_guidance"],
+                "properties": {
+                  "id": {"$ref": "#/$defs/id"},
+                  "label": {"type": "string", "minLength": 1},
+                  "rationale": {"type": "string", "minLength": 1},
+                  "required_terms": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+                  "missing_guidance": {"type": "string", "minLength": 1}
+                }
+              }
+            }
+          }
+        },
+        "provenance": {"$ref": "#/$defs/item_provenance"}
+      }
+    },
+    "item_provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source", "license"],
+      "properties": {
+        "source": {"type": "string", "minLength": 1},
+        "license": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}
