@@ -59,10 +59,10 @@ The command prints stable JSON containing the input, response, per-dimension
 feedback, revision, and transfer prompt. The same command and inputs produce
 the same output, so a learner or teacher can inspect every step.
 
-Run the deterministic test suite with:
+Run the deterministic standard-library test suite with:
 
 ```bash
-python -m pytest
+python -m unittest discover -s tests -p 'test_*.py'
 ```
 
 The two fixtures are intentionally original teaching examples. The dialogue
