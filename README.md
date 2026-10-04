@@ -44,6 +44,8 @@ scoring in this MVP.
 The runtime has no third-party dependency. From the repository root:
 
 ```bash
+python -m venv .venv
+source .venv/bin/activate
 python -m pip install -e .
 english-explain validate fixtures/dialogue-repair.json
 english-explain run fixtures/dialogue-repair.json \
