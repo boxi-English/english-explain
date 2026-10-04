@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "english-explain"
+version = "0.1.0"
+description = "Inspectable, offline lesson contracts and learner flows for English education"
+readme = "README.md"
+requires-python = ">=3.12"
+license = { file = "LICENSE" }
+authors = [{ name = "Boxi English contributors" }]
+dependencies = []
+
+[project.scripts]
+english-explain = "english_explain.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

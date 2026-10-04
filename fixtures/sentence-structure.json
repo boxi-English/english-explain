@@ -1,0 +1,62 @@
+{
+  "schema_version": "0.1",
+  "id": "sentence-counterfactual",
+  "title": "A counterfactual past condition",
+  "language": "en",
+  "audience": {
+    "level": "intermediate",
+    "description": "Learners who can describe past events and are ready to compare real and imagined outcomes."
+  },
+  "objectives": [
+    "Connect the if-clause to its imagined past condition.",
+    "Produce a response that preserves the imagined condition and result."
+  ],
+  "context": "A teammate asks why a report was not sent before the meeting.",
+  "items": [
+    {
+      "id": "counterfactual-1",
+      "title": "Explain the missed report",
+      "input": {
+        "segments": [
+          {
+            "id": "prompt-1",
+            "text": "If I had known, I would have called you."
+          }
+        ]
+      },
+      "task": {
+        "prompt": "Reply with a sentence explaining the imagined condition and its result.",
+        "response_dimensions": ["condition", "result"],
+        "revision_prompt": "Revise your reply so the imagined condition and the past result are both clear.",
+        "transfer_prompt": "Write a new sentence about an earlier warning that would have changed a later action."
+      },
+      "feedback": {
+        "dimensions": [
+          {
+            "id": "condition",
+            "label": "Imagined past condition",
+            "rationale": "The if-clause identifies a past condition that did not happen.",
+            "required_terms": ["had", "known"],
+            "missing_guidance": "Name the unreal past condition with a had + past-participle clause."
+          },
+          {
+            "id": "result",
+            "label": "Imagined past result",
+            "rationale": "The result clause shows what would have happened because of that condition.",
+            "required_terms": ["would have"],
+            "missing_guidance": "Show the imagined past result with would have plus a past participle."
+          }
+        ]
+      },
+      "provenance": {
+        "source": "Original Boxi English teaching example",
+        "license": "CC BY 4.0"
+      }
+    }
+  ],
+  "provenance": {
+    "text": "Original Boxi English teaching examples",
+    "audio": "No audio asset; the text path is canonical for this fixture.",
+    "license": "CC BY 4.0"
+  }
+}
